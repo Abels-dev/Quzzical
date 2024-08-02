@@ -5,7 +5,12 @@ import "./style.css";
 const App=()=>{
     return (
         <div className="container">
-          <Intro />
+          <Question />
+          <Question />
+          <Question />
+          <Question />
+          <Question />
+          <button className="checkBtn">Check answers</button>
         </div>
     )
 }
