@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Karla:ital,wght@0,200..800;1,200..800&family=Passion+One:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Passion+One:wght@400;700;900&display=swap");
 * {
    margin: 0;
    padding: 0;
@@ -7,14 +9,15 @@ body {
    min-height: 100vh;
    background-color: burlywood;
    width: 100%;
+   font-family: "Karla", sans-serif;
 }
 .container {
    width: 550px;
-   height: 550px;
+   height: 600px;
    margin: 30px auto;
    border: 2px solid silver;
    background-color: #f5f7fb;
-   padding-top: 40px;
+   padding-top: 30px;
    position: relative;
    display: flex;
    flex-direction: column;
@@ -42,6 +45,7 @@ p {
    color: #293264;
 }
 button {
+   font-family: "Inter", sans-serif;
    font-size: 10px;
    font-weight: 500;
    line-height: 12px;
@@ -72,22 +76,23 @@ button {
    right: 0;
 }
 .question {
-   margin-left: 75px;
+   margin-left: 60px;
    margin-right: 76px;
    margin-bottom: 15px;
    border-bottom: 0.79px solid #dbdef0;
 }
 .question p {
    font-weight: 700;
-   margin-bottom: 12px;
+   margin-bottom: 10px;
+   font-size: 14;
 }
 .answers {
    display: flex;
    gap: 13px;
 }
 .answers button {
-   width: 66px;
-   height: 21px;
+   width: 80px;
+   min-height: 21px;
    border-radius: 8px;
    color: #293264;
    background-color: transparent;
