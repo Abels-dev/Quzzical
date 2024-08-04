@@ -1,10 +1,14 @@
 import React from "react";
 
+const Answers = (props) => {
 
-const Answers=(props)=>{
-    <div className="answers">
-       <button>props.answer</button>
-    </div>
-}
+   return (
+      <button
+         onClick={props.handleSelect}
+         className={props.isSelect ? "selected" : ""}>
+         {props.answer}
+      </button>
+   );
+};
 
-export default Answers
+export default Answers;
