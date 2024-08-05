@@ -6,12 +6,17 @@ import he from "he";
 
 const Question = (props) => {
    const [selectedChoice, setSelectedChoice] = React.useState(null);
+   const [gameCount,setGameCount]=React.useState(0);
    let isCorrect = false;
    let isWrong = false;
    let correctAnswer;
    const handleSelect = (index) => {
       setSelectedChoice(index);
    };
+   if(gameCount!==props.gameCount){
+      setSelectedChoice(null)
+      setGameCount(props.gameCount)
+   }
    return (
       <div className="question">
          <p>{props.questionDetail.question}</p>
@@ -33,8 +38,10 @@ const Question = (props) => {
                      isCorrect={index === selectedChoice && isCorrect}
                      isWrong={index === selectedChoice && isWrong}
                      isSelect={index === selectedChoice}
-                     correctAnswer={(index===correctAnswer)}
-                     handleSelect={() => handleSelect(index)}
+                     correctAnswer={index === correctAnswer}
+                     handleSelect={() =>
+                        props.result ? null : handleSelect(index)
+                     }
                   />
                );
             })}

@@ -32,8 +32,9 @@ body {
 }
 .playagain-contain{
    display: flex;
-   gap: 10px;
+   gap: 20px;
    align-self: center;
+   align-items: center;
 }
 h1 {
    font-size: 31px;
@@ -89,7 +90,7 @@ button {
 }
 .question {
    margin-left: 60px;
-   margin-right: 76px;
+   margin-right: 80px;
    margin-bottom: 15px;
    border-bottom: 0.79px solid #dbdef0;
 }
@@ -120,6 +121,10 @@ button {
    font-weight: 600;
    align-self: center;
    margin-top: 5px;
+}
+.playagain{
+   width: 104px;
+   height: 30px;
 }
 .answers .selected {
    background-color: #d6dbf5;

@@ -7,6 +7,7 @@ const App = () => {
    const [isStarted, setIsStarted] = React.useState(false);
    const [questions, setQuestions] = React.useState([]);
    const [checkResult, setCheckResult] = React.useState(false);
+   const [repeatGame,setRepeatGame]=React.useState(0);
    const start = () => {
       setIsStarted(true);
    };
@@ -21,6 +22,7 @@ const App = () => {
       return array;
    };
    React.useEffect(() => {
+      console.log("i ran")
       fetch("https://opentdb.com/api.php?amount=5&type=multiple")
          .then((res) => res.json())
          .then((data) => {
@@ -38,25 +40,29 @@ const App = () => {
             });
          })
          .catch((err) => console.log(err));
-   }, []);
+   }, [repeatGame]);
    const result = () => {
       setCheckResult(true);
    };
+   const repeatingGame=()=>{
+         setRepeatGame(prevGameCount=>prevGameCount+1)
+         setCheckResult(false);
+   }
    const renderQuestions = questions.map((question, index) => {
       return (
-         <Question questionDetail={question} key={index} result={checkResult} />
+         <Question questionDetail={question} key={index} result={checkResult} gameCount={repeatGame} />
       );
    });
    const playAgain = (
       <div className="playagain-contain">
          <h3>You scored 3/5 correct answers</h3>
-         <button className="playagain">Play again</button>
+         <button className="playagain" onClick={repeatingGame}>Play again</button>
       </div>
    );
    return (
       <div className="container">
          {isStarted ? renderQuestions : <Intro start={start} />}
-         {isStarted && (
+         {(!checkResult&&isStarted) && (
             <button className="checkBtn" onClick={result}>
                Check answers
             </button>
