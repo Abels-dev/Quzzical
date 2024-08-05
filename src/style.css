@@ -30,6 +30,11 @@ body {
    justify-content: center;
    margin-top: 180px;
 }
+.playagain-contain{
+   display: flex;
+   gap: 10px;
+   align-self: center;
+}
 h1 {
    font-size: 31px;
    font-weight: 700;
@@ -37,6 +42,13 @@ h1 {
    text-align: center;
    color: #293264;
    margin-bottom: 10px;
+}
+h3 {
+   font-size: 13px;
+   font-weight: 700;
+   line-height: 15px;
+   text-align: center;
+   color: #293264;
 }
 p {
    font-size: 16px;
@@ -99,7 +111,8 @@ button {
    border: 0.79px solid #4d5b9e;
    margin-bottom: 15px;
 }
-.checkBtn {
+.checkBtn,
+.playagain {
    width: 120px;
    height: 35px;
    background-color: #4d5b9e;
@@ -108,6 +121,14 @@ button {
    align-self: center;
    margin-top: 5px;
 }
-.answers .selected{
-   background-color: #D6DBF5; 
+.answers .selected {
+   background-color: #d6dbf5;
+   border: 0;
+}
+.answers .correct {
+   background-color: #94d7a2;
+   border: 0;
+}
+.answers .wrong {
+   background-color: #f8bcbc;
 }
