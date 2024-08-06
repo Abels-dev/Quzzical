@@ -137,3 +137,6 @@ button {
 .answers .wrong {
    background-color: #f8bcbc;
 }
+.answers .incorrect{
+   opacity: 0.5;
+}

@@ -6,17 +6,17 @@ import he from "he";
 
 const Question = (props) => {
    const [selectedChoice, setSelectedChoice] = React.useState(null);
-   const [gameCount,setGameCount]=React.useState(0);
    let isCorrect = false;
    let isWrong = false;
    let correctAnswer;
    const handleSelect = (index) => {
       setSelectedChoice(index);
+     const isCorrect= props.questionDetail.answers[index].answer===props.questionDetail.correctAnswer;
+     props.updateSelectedAnswers(isCorrect,props.questionDetail.id);
    };
-   if(gameCount!==props.gameCount){
+   React.useEffect(()=>{
       setSelectedChoice(null)
-      setGameCount(props.gameCount)
-   }
+   },[props.gameCount])
    return (
       <div className="question">
          <p>{props.questionDetail.question}</p>
@@ -39,6 +39,7 @@ const Question = (props) => {
                      isWrong={index === selectedChoice && isWrong}
                      isSelect={index === selectedChoice}
                      correctAnswer={index === correctAnswer}
+                     incorrectAnswer={props.result&&!(index===correctAnswer)}
                      handleSelect={() =>
                         props.result ? null : handleSelect(index)
                      }

@@ -7,7 +7,7 @@ const Answers = (props) => {
          onClick={props.handleSelect}
          className={`${props.isSelect ? "selected" : ""} ${
             (props.isCorrect||props.correctAnswer) ? "correct" : ""
-         } ${props.isWrong ? "wrong" : ""}`}>
+         } ${props.isWrong ? "wrong" : ""} ${props.incorrectAnswer?"incorrect":''}`}>
          {props.answer}
       </button>
    );
