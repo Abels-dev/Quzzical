@@ -140,3 +140,23 @@ button {
 .answers .incorrect{
    opacity: 0.5;
 }
+@media screen and (max-width:476px){
+       .container{
+           width: 100%;
+           min-height: 100vh;
+           margin: 0;
+       }
+       .answers{
+         flex-direction: column;
+         gap: 8px;
+       }
+       .question{
+         margin-left: 30px;
+       }
+       .blob2{
+         width: 100px;
+       }
+       .blob3{
+         width: 50px;
+       }
+}
