@@ -88,6 +88,9 @@ button {
    top: 0;
    right: 0;
 }
+.blob2{
+   width: 110px;
+}
 .question {
    margin-left: 60px;
    margin-right: 80px;
@@ -111,6 +114,7 @@ button {
    background-color: transparent;
    border: 0.79px solid #4d5b9e;
    margin-bottom: 15px;
+   padding: 2px;
 }
 .checkBtn,
 .playagain {

@@ -5,7 +5,7 @@ const Intro=(props)=>{
     return (
         <div className="intro">
             <h1>Quizzical</h1>
-            <p>A place to test your general knowledge in a fun way</p>
+            <p>A place to test your knowledge in computers and Tech in a fun way</p>
             <button className="start" onClick={props.start}>Start quiz</button>
             <img src={blob5} className="blob5" alt="somepic"/>
             <img src={blob4} className="blob4" alt="somepic"/>

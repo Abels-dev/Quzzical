@@ -26,7 +26,7 @@ const App = () => {
    };
    useEffect(() => {
       // fetching the data and setting the questions
-      fetch("https://opentdb.com/api.php?amount=5&category=9&type=multiple")
+      fetch("https://opentdb.com/api.php?amount=5&category=18&type=multiple")
          .then((res) => res.json())
          .then((data) => {
             setQuestions(() => {
