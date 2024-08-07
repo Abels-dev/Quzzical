@@ -8,12 +8,16 @@
 body {
    min-height: 100vh;
    background-color: burlywood;
+   background-image: url('./img/quiz.jpg');
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
    width: 100%;
    font-family: "Karla", sans-serif;
 }
 .container {
-   width: 550px;
-   min-height: 550px;
+   width: 600px;
+   min-height: 600px;
    margin: 30px auto;
    border: 2px solid silver;
    background-color: #f5f7fb;
@@ -150,6 +154,12 @@ button {
            min-height: 100vh;
            margin: 0;
        }
+       .intro{
+         padding: 10px;
+       }
+       .intro p{
+         text-align: center;
+       }
        .answers{
          flex-direction: column;
          gap: 8px;
@@ -161,6 +171,6 @@ button {
          width: 100px;
        }
        .blob3{
-         width: 50px;
+         width: 45px;
        }
 }
