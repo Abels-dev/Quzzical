@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import blob2 from "./img/blob2.png";
 import blob3 from "./img/blob3.png";
 import Answers from "./Answers";
 import he from "he";
 
 const Question = (props) => {
-   const [selectedChoice, setSelectedChoice] = React.useState(null);
+   const [selectedChoice, setSelectedChoice] = useState(null);
    let isCorrect = false;
    let isWrong = false;
    let correctAnswer;
    const handleSelect = (index) => {
+      // handle the selected answers
       setSelectedChoice(index);
-     const isCorrect= props.questionDetail.answers[index].answer===props.questionDetail.correctAnswer;
-     props.updateSelectedAnswers(isCorrect,props.questionDetail.id);
+      const isCorrect =
+         props.questionDetail.answers[index].answer ===
+         props.questionDetail.correctAnswer;
+      props.updateSelectedAnswers(isCorrect, props.questionDetail.id);
    };
-   React.useEffect(()=>{
-      setSelectedChoice(null)
-   },[props.gameCount])
+   useEffect(() => {
+      setSelectedChoice(null);
+   }, [props.gameCount]);
    return (
       <div className="question">
          <p>{props.questionDetail.question}</p>
@@ -27,11 +30,13 @@ const Question = (props) => {
                      correctAnswer = index;
                   if (index === selectedChoice) {
                      if (answer.answer === props.questionDetail.correctAnswer)
+                        // checks if the selected answer is correct
                         isCorrect = true;
                      else isWrong = true;
                   }
                }
                return (
+                  // render the answers
                   <Answers
                      answer={he.decode(answer.answer)}
                      key={index}
@@ -39,7 +44,9 @@ const Question = (props) => {
                      isWrong={index === selectedChoice && isWrong}
                      isSelect={index === selectedChoice}
                      correctAnswer={index === correctAnswer}
-                     incorrectAnswer={props.result&&!(index===correctAnswer)}
+                     incorrectAnswer={
+                        props.result && !(index === correctAnswer)
+                     }
                      handleSelect={() =>
                         props.result ? null : handleSelect(index)
                      }

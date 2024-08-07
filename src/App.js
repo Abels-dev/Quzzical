@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import he from "he";
 import Intro from "./Intro";
 import Question from "./Question";
 import "./style.css";
 const App = () => {
-   const [isStarted, setIsStarted] = React.useState(false);
-   const [questions, setQuestions] = React.useState([]);
-   const [checkResult, setCheckResult] = React.useState(false);
-   const [repeatGame, setRepeatGame] = React.useState(0);
-   const [correctCount,setCorrectCount]=React.useState(0);
-   const [trackSelectedAnswers,setTrackSelectedAnswers]=React.useState([])
+   const [isStarted, setIsStarted] = useState(false);
+   const [questions, setQuestions] = useState([]);
+   const [checkResult, setCheckResult] = useState(false);
+   const [repeatGame, setRepeatGame] = useState(0);
+   const [correctCount, setCorrectCount] = useState(0);
+   const [trackSelectedAnswers, setTrackSelectedAnswers] = useState([]);
    const start = () => {
       setIsStarted(true);
    };
    const shuffleArray = (array) => {
+      // function to shuffle the answers position
       array = array.map((answer) => {
          return { answer: answer, isCorrect: false };
       });
@@ -23,8 +24,9 @@ const App = () => {
       }
       return array;
    };
-   React.useEffect(() => {
-      fetch("https://opentdb.com/api.php?amount=5&category=18&type=multiple")
+   useEffect(() => {
+      // fetching the data and setting the questions
+      fetch("https://opentdb.com/api.php?amount=5&category=9&type=multiple")
          .then((res) => res.json())
          .then((data) => {
             setQuestions(() => {
@@ -47,36 +49,38 @@ const App = () => {
       setCheckResult(true);
       countCorrectAnswers();
    };
-   const updateSelectedAnswers=(isCorrect,id)=>{
-        let isDuplicated=false;
-         setTrackSelectedAnswers(prevAnswer=>{
-              const seletedAnswers=[...prevAnswer];
-              seletedAnswers.forEach((answer,index)=>{
-                    if(answer.id===id){
-                       seletedAnswers[index]={id,isCorrect};
-                       isDuplicated=true;
-                    }      
-              })
-             if(!isDuplicated)
-               seletedAnswers.push({id,isCorrect});
-              return seletedAnswers;
-         })
-   }
-   const countCorrectAnswers=()=>{
-         let correctAnswers=0;
-          trackSelectedAnswers.forEach(answer=>{
-              if(answer.isCorrect)
-                 correctAnswers++;
-          })
-          setCorrectCount(correctAnswers)
-   }
+   const updateSelectedAnswers = (isCorrect, id) => {
+      // keep track of selected answers
+      let isDuplicated = false;
+      setTrackSelectedAnswers((prevAnswer) => {
+         const seletedAnswers = [...prevAnswer];
+         seletedAnswers.forEach((answer, index) => {
+            if (answer.id === id) {
+               seletedAnswers[index] = { id, isCorrect };
+               isDuplicated = true;
+            }
+         });
+         if (!isDuplicated) seletedAnswers.push({ id, isCorrect });
+         return seletedAnswers;
+      });
+   };
+   const countCorrectAnswers = () => {
+      // count the correct answers from the selected one
+      let correctAnswers = 0;
+      trackSelectedAnswers.forEach((answer) => {
+         if (answer.isCorrect) correctAnswers++;
+      });
+      setCorrectCount(correctAnswers);
+   };
    const repeatingGame = () => {
+      // function to repeat the game when playagain Clicked
       setRepeatGame((prevGameCount) => prevGameCount + 1);
       setCheckResult(false);
-      setCorrectCount(0)
-      setTrackSelectedAnswers([])
+      setCorrectCount(0);
+      setTrackSelectedAnswers([]);
    };
    const renderQuestions = questions.map((question, index) => {
+      // render the questions
       return (
          <Question
             questionDetail={question}
@@ -87,14 +91,15 @@ const App = () => {
          />
       );
    });
-   const playAgain = (
-      <div className="playagain-contain">
-         <h3>You scored {correctCount}/5 correct answers</h3>
-         <button className="playagain" onClick={repeatingGame}>
-            Play again
-         </button>
-      </div>
-   );
+   const playAgain = // render the play again section and the result
+      (
+         <div className="playagain-contain">
+            <h3>You scored {correctCount}/5 correct answers</h3>
+            <button className="playagain" onClick={repeatingGame}>
+               Play again
+            </button>
+         </div>
+      );
    return (
       <div className="container">
          {isStarted ? renderQuestions : <Intro start={start} />}
