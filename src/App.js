@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Confetti from "react-confetti";
 import he from "he";
 import Intro from "./Intro";
 import Question from "./Question";
@@ -26,7 +27,7 @@ const App = () => {
    };
    useEffect(() => {
       // fetching the data and setting the questions
-      fetch("https://opentdb.com/api.php?amount=5&category=18&type=multiple")
+      fetch("https://opentdb.com/api.php?amount=5&category=9&type=multiple")
          .then((res) => res.json())
          .then((data) => {
             setQuestions(() => {
@@ -102,6 +103,7 @@ const App = () => {
       );
    return (
       <div className="container">
+         {correctCount >=4 && <Confetti width={600} height={600} />}
          {isStarted ? renderQuestions : <Intro start={start} />}
          {!checkResult && isStarted && (
             <button className="checkBtn" onClick={result}>
